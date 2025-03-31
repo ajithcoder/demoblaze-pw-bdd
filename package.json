@@ -1,0 +1,23 @@
+{
+  "name": "demoblaze-pw-bdd",
+  "version": "1.0.0",
+  "description": "This demo projects intends to automate the practice website https://www.demoblaze.com/index.html with playwright typescript, incoporating docker and github actions",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajithcoder/demoblaze-pw-bdd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ajithcoder/demoblaze-pw-bdd/issues"
+  },
+  "homepage": "https://github.com/ajithcoder/demoblaze-pw-bdd#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.14"
+  }
+}
