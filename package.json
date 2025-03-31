@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "This demo projects intends to automate the practice website https://www.demoblaze.com/index.html with playwright typescript, incoporating docker and github actions",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:e2e": "npx bddgen && npx playwright test",
+    "postinstall": "npx playwright install --with-deps"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ajithcoder/demoblaze-pw-bdd.git"
@@ -18,6 +21,8 @@
   "homepage": "https://github.com/ajithcoder/demoblaze-pw-bdd#readme",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.13.14"
+    "@types/node": "^22.13.14",
+    "dotenv": "^16.4.7",
+    "playwright-bdd": "^8.2.1"
   }
 }

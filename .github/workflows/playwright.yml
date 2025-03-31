@@ -19,11 +19,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Create .env file for Playwright
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+          echo "ALPHA_USERNAME=${{ secrets.ALPHA_USERNAME }}" >> .env
+          echo "ALPHA_PASSWORD=${{ secrets.ALPHA_PASSWORD }}" >> .env
+          echo "BETA_USERNAME=${{ secrets.BETA_USERNAME }}" >> .env
+          echo "BETA_PASSWORD=${{ secrets.BETA_PASSWORD }}" >> .env
+
       - name: Build Docker image
         run: docker build -t playwright-tests .
 
       - name: Run Playwright tests in Docker
-        run: docker run --rm playwright-tests
+        run: docker run --rm --env-file .env playwright-tests
 
       - name: Upload Playwright Test Report
         if: always()
@@ -31,4 +39,20 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
+          retention-days: 7
+
+      - name: Upload Playwright Traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: test-results/**/*.zip
+          retention-days: 7
+
+      - name: Upload Screenshots & Videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: test-results/
           retention-days: 7
